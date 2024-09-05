@@ -20,8 +20,26 @@ export const register = async (req, res) => {
     res.status(500).send({ message: "Failed to create new user" });
   }
 };
-export const login = (req, res) => {
-  //DB operations
+export const login = async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    //check if the user exists
+    const user = await prisma.user.findUnique({
+      where: { username},
+    });
+    if (!user) {
+      return res.status(401).send({ message: "Invalid credentials" });
+    }
+    //check if the password is correct
+    const isCorrect = await bcrypt.compare(password, user.password);
+    if(!isCorrect) {
+        return res.status(401).send({ message: "Invalid credentials" });
+    }
+    //generate a JWT token and send it back
+
+  } catch (err) {
+    res.status(401).send({ message: "Invalid credentials" });
+  }
 };
 export const logout = (req, res) => {
   //DB operations
