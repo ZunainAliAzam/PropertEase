@@ -118,7 +118,3 @@ Feel free to contribute by submitting issues, feature requests, or pull requests
 
 ## License
 This project is licensed under the MIT License.
-
----
-
-Let me know if you'd like any adjustments or additional details!
