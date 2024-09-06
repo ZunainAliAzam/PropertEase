@@ -1,0 +1,8 @@
+{
+    "delay": "2500",
+    "exec": "node --env-file .env app.js",
+    "watch": ["app.js", "routes/"],
+    "env": {
+      "PORT": "8800"
+    }
+  }  
