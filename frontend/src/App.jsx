@@ -1,10 +1,11 @@
 import React from 'react'
+import Navbar from './components/navbar/Navbar.jsx'
+import "./layout.scss";
 
 const App = () => {
   return (
-    <div>
-      hellow world
-      <h1>Vite + React</h1>
+    <div className='layout'>
+      <Navbar />
     </div>
   )
 }
