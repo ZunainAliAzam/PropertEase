@@ -1,6 +1,6 @@
 import React from 'react'
 import "./listPage.scss"
-const listPAge = () => {
+const ListPAge = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const listPAge = () => {
   )
 }
 
-export default listPAge
+export default ListPAge
