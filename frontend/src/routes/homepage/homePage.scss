@@ -31,7 +31,10 @@
         font-size: 64px;
 
         @include lg {
-          font-size: 48px;
+          font-size: 42px;
+        }
+        @include sm{
+          font-size: 32px;
         }
       }
 
