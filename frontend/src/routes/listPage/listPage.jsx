@@ -1,11 +1,11 @@
-import React from 'react'
-import "./listPage.scss"
-const ListPAge = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+import React from "react";
+import "./listPage.scss";
+import Layout from "../layout/Layout";
 
-export default ListPAge
+const ListPage = () => {
+  return (
+    <div>snjn</div>
+  );
+};
+
+export default ListPage;
