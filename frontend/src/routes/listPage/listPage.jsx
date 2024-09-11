@@ -3,7 +3,7 @@ import "./listPage.scss";
 
 const ListPage = () => {
   return (
-    <div>snjn</div>
+    <div></div>
   );
 };
 
