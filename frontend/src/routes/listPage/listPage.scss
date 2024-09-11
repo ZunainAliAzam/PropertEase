@@ -1,2 +1,18 @@
 @import "../../responsive.scss";
 
+.listPage {
+  display: flex;
+  height: 100%;
+  .list {
+    flex: 3;
+
+    .wrapper{
+        padding: 50px;
+    }
+  }
+
+  .map {
+    flex: 2;
+    background-color: #fcf5f3;
+  }
+}
