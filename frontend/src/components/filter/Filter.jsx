@@ -3,7 +3,7 @@ import './filter.scss';
 const Filter = () => {
   return (
     <div>
-      
+      filter
     </div>
   )
 }
