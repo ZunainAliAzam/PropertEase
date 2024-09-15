@@ -23,7 +23,6 @@
     align-items: center;
     gap: 20px;
 
-
     select {
       width: 100px;
       margin-top: 0.5rem;
@@ -34,7 +33,7 @@
     }
 
     input {
-      width: 100px;
+      width: 5rem;
       margin-top: 0.5rem;
       padding: 0.5rem;
       font-size: 0.9rem;
@@ -42,8 +41,9 @@
       border-radius: 5px;
     }
     button {
-      width: 100px;
+      width: 130px;
       padding: 10px;
+      border-radius: 5px;
       border: none;
       cursor: pointer;
       background-color: #fece51;

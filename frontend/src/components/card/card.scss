@@ -1,0 +1,20 @@
+
+.card {
+  display: flex;
+  gap: 20px;
+
+  .imgContainer {
+    height: 200px;
+    flex: 2;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+  .textContainer {
+    flex: 3;
+  }
+}
