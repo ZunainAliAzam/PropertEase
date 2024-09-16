@@ -1,12 +1,11 @@
 import React from "react";
 import { Marker, Popup } from "react-leaflet";
-
+import { Link } from "react-router-dom";
+import "./pin.scss"
 const Pin = ({ item }) => {
-  const position = [item.latitude, item.longitude];
 
   return (
-    <div>
-      <Marker position={position}>
+      <Marker position={[item.latitude, item.longitude]}>
         <Popup>
           <div className="popupContainer">
             <img src={item.images[0]} alt="" />
@@ -18,8 +17,8 @@ const Pin = ({ item }) => {
           </div>
         </Popup>
       </Marker>
-    </div>
   );
 };
+
 
 export default Pin;
