@@ -1,89 +1,115 @@
-import React from "react";
+import { useState } from "react";
 import "./filter.scss";
-const Filter = () => {
-  const handleChange = () => {
-    console.log("Filter");
+import { useSearchParams } from "react-router-dom";
+
+function Filter() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState({
+    type: searchParams.get("type") || "",
+    city: searchParams.get("city") || "",
+    property: searchParams.get("property") || "",
+    minPrice: searchParams.get("minPrice") || "",
+    maxPrice: searchParams.get("maxPrice") || "",
+    bedroom: searchParams.get("bedroom") || "",
+  });
+
+  const handleChange = (e) => {
+    setQuery({
+      ...query,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handleFilter = () => {};
+  const handleFilter = () => {
+    setSearchParams(query);
+  };
+
   return (
     <div className="filter">
       <h1>
-        Search results for <b>London</b>
+        Search results for <b>london</b>
       </h1>
-
-      <div className="top"> 
-        <label htmlFor="city">Location</label>
-        <input
-          type="text"
-          id="city"
-          name="city"
-          placeholder="City Location"
-          onChange={handleChange}
-        />
+      <div className="top">
+        <div className="item">
+          <label htmlFor="city">Location</label>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            placeholder="City Location"
+            onChange={handleChange}
+            // defaultValue={query.city}
+          />
+        </div>
       </div>
-
       <div className="bottom">
-        <div className="type">
-          <label htmlFor="">Type</label>
-          <select name="type" id="type" onChange={handleChange}>
-            <option value="">Any</option>
-            <option value="house">Buy</option>
-            <option value="apartment">Rent</option>
+        <div className="item">
+          <label htmlFor="type">Type</label>
+          <select
+            name="type"
+            id="type"
+            onChange={handleChange}
+            // defaultValue={query.type}
+          >
+            <option value="">any</option>
+            <option value="buy">Buy</option>
+            <option value="rent">Rent</option>
           </select>
         </div>
-
-        <div className="property">
-          <label htmlFor="">Property</label>
-          <select name="property" id="property" onChange={handleChange}>
-            <option value="">Any</option>
-            <option value="house">House</option>
+        <div className="item">
+          <label htmlFor="property">Property</label>
+          <select
+            name="property"
+            id="property"
+            onChange={handleChange}
+            // defaultValue={query.property}
+          >
+            <option value="">any</option>
             <option value="apartment">Apartment</option>
+            <option value="house">House</option>
+            <option value="condo">Condo</option>
+            <option value="land">Land</option>
           </select>
         </div>
-
-        <div className="minPrice">
-          <label htmlFor="">Min Price</label>
+        <div className="item">
+          <label htmlFor="minPrice">Min Price</label>
           <input
             type="number"
             id="minPrice"
             name="minPrice"
-            min={0}
-            placeholder="Min Price"
+            placeholder="any"
             onChange={handleChange}
+            // defaultValue={query.minPrice}
           />
         </div>
-
-        <div className="maxPrice">
-          <label htmlFor="">Max Price</label>
+        <div className="item">
+          <label htmlFor="maxPrice">Max Price</label>
           <input
-            type="number"
+            type="text"
             id="maxPrice"
             name="maxPrice"
-            min={0}
-            placeholder="Max Price"
+            placeholder="any"
             onChange={handleChange}
+            // defaultValue={query.maxPrice}
           />
         </div>
-
-        <div className="bedroom">
-          <label htmlFor="">Bedroom</label>
+        <div className="item">
+          <label htmlFor="bedroom">Bedroom</label>
           <input
-            type="number"
+            type="text"
             id="bedroom"
             name="bedroom"
-            min={1}
-            placeholder="Any"
+            placeholder="any"
             onChange={handleChange}
+            // defaultValue={query.bedroom}
           />
         </div>
-
         <button onClick={handleFilter}>
-          <img src="./search.png" alt="search" />
+          <img src="/search.png" alt="" />
         </button>
       </div>
     </div>
   );
-};
+}
 
 export default Filter;

@@ -5,9 +5,15 @@
   height: 100%;
   .list {
     flex: 3;
+    height: 100%;
 
     .wrapper{
+      height: 100%;
         padding:0 50px;
+        display: flex;
+        flex-direction: column;
+        gap:30px;
+        overflow-y: scroll;
     }
   }
 
