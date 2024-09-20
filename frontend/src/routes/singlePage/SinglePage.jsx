@@ -12,7 +12,7 @@ const SinglePage = () => {
           <div className="info">
             <div className="top">
               <div className="post">
-                <h1>apartment 1</h1>
+                <h1>Apartment 1</h1>
                 <div className="address">
                   <img src="./pin.png" alt="" />
                   <p>1533 Rixon Way</p>
