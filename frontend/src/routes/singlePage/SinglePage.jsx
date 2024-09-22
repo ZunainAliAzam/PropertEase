@@ -1,7 +1,6 @@
 import React from "react";
 import "./singlePage.scss";
 import Slider from "../../components/slider/Slider";
-import { listData } from "../../lib/dummyData";
 
 const SinglePage = () => {
   return (
