@@ -8,7 +8,7 @@ const SinglePage = () => {
     <div className="singlePage">
       <div className="details">
         <div className="wrapper">
-          <Slider images={singlePostData.images}/>
+          <Slider images={singlePostData.images} />
           <div className="info">
             <div className="top">
               <div className="post">
@@ -24,9 +24,7 @@ const SinglePage = () => {
                 <span>{userData.name}</span>
               </div>
             </div>
-            <div className="bottom">
-              {singlePostData.description}
-            </div>
+            <div className="bottom">{singlePostData.description}</div>
           </div>
         </div>
       </div>
