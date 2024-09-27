@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./slider.scss";
 
 const Slider = ({ images }) => {
-  const [setImage, setImageIndex] = useState(null);
+  const [imageIndex, setImageIndex] = useState(null);
 
   return (
     <div className="slider">
@@ -15,7 +15,7 @@ const Slider = ({ images }) => {
             key={index}
             src={image}
             alt=""
-            onClick={setImageIndex(index[index + 1])}
+            onClick={() => setImageIndex(index(index + 1))}
           />
         ))}
       </div>
