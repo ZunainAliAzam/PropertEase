@@ -1,3 +1,5 @@
+@import "../../responsive.scss";
+
 .slider {
   width: 100%;
   height: 350px;
@@ -14,6 +16,10 @@
 
   .bigImage {
     flex: 3;
+
+    @include sm {
+      flex: 2;
+    }
   }
 
   .smallImage {
@@ -22,8 +28,15 @@
     justify-content: space-between;
     flex-direction: column;
 
+    @include sm {
+      flex: 1;
+    }
     img {
       height: 100px;
+
+      @include sm {
+        height: 80px;
+      }
     }
   }
 }
