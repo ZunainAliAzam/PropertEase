@@ -4,9 +4,18 @@ import "./slider.scss";
 const Slider = ({ images }) => {
   const [imageIndex, setImageIndex] = useState(null);
 
-  const changeSlide = () => {
-    
-  }
+  const changeSlide = (direction) => {
+    setImageIndex(
+      direction === "left"
+        ? imageIndex === 0
+          ? images.length - 1
+          : imageIndex - 1
+        : imageIndex === images.length - 1
+        ? 0
+        : imageIndex + 1
+    );
+  };
+
   return (
     <div className="slider">
       {imageIndex !== null && (
@@ -20,7 +29,7 @@ const Slider = ({ images }) => {
           </div>
 
           <div className="arrow" onClick={() => changeSlide("right")}>
-            <img src="./arrow.png" alt="" />
+            <img src="./arrow.png" className="right" alt="" />
           </div>
           <div className="close" onClick={() => setImageIndex(null)}>
             X
