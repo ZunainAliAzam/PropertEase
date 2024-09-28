@@ -121,6 +121,7 @@ export const singlePostData = {
   latitude: 51.5074,
   longitude: -0.1278,
   city: "London",
+  squareFeet:"861 sqft",
   address: "1234 Broadway St",
   school: "250m away",
   bus: "100m away",

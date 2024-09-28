@@ -59,18 +59,15 @@ const SinglePage = () => {
           <div className="sizes">
             <div className="size">
               <img src="./size.png" alt="" />
-              <span>Square Footage</span>
-              <p>{singlePostData.squareFeet} sq ft</p>
+              <p>{singlePostData.squareFeet}</p>
             </div>
             <div className="size">
               <img src="./bed.png" alt="" />
-              <span>Bedrooms</span>
-              <p>{singlePostData.bedRooms}</p>
+              <p>{singlePostData.bedRooms} beds</p>
             </div>
             <div className="size">
               <img src="./bath.png" alt="" />
-              <span>Bathrooms</span>
-              <p>{singlePostData.bathroom}</p>
+              <p>{singlePostData.bathroom} baths</p>
             </div>
           </div>
 
@@ -78,18 +75,15 @@ const SinglePage = () => {
           <div className="listHorizontal">
             <div className="feature">
               <img src="./school.png" alt="" />
-              <span>School</span>
-              <p>{singlePostData.school} sq ft</p>
+              <p>{singlePostData.school}</p>
             </div>
             <div className="feature">
               <img src="./pet.png" alt="" />
-              <span>Bus Stop</span>
-              <p>{singlePostData.bus}m away</p>
+              <p>{singlePostData.bus}</p>
             </div>
             <div className="feature">
               <img src="./fee.png" alt="" />
-              <span>Restaurants</span>
-              <p>{singlePostData.restaurant}m away</p>
+              <p>{singlePostData.restaurant}</p>
             </div>
           </div>
           <p className="title">Location</p>
