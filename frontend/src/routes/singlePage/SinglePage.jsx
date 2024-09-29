@@ -87,7 +87,7 @@ const SinglePage = () => {
             </div>
           </div>
           <p className="title">Location</p>
-          <div className="map">
+          <div className="mapContainer">
             <mapContainer>
               <Map items={[singlePostData]} />
             </mapContainer>
