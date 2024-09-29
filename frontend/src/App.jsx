@@ -2,6 +2,7 @@ import React from "react";
 import HomePage from "./routes/homepage/homePage.jsx";
 import ListPage from "./routes/listPage/listPage.jsx";
 import SinglePage from "./routes/singlePage/SinglePage.jsx";
+import ProfilePage from "./routes/profilePage/ProfilePage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./routes/layout/Layout.jsx";
 
@@ -14,6 +15,7 @@ const App = () => {
         { path: "/", element: <HomePage /> },
         { path: "/list", element: <ListPage /> },
         { path: "/:id", element: <SinglePage /> },
+        { path: "/profile", element: <ProfilePage /> },
       ],
     },
   ]);
