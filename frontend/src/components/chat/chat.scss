@@ -16,6 +16,8 @@
       align-items: center;
       background-color: #fefefe;
       padding: 10px 16px;
+      gap: 20px;
+      cursor: pointer;
       img {
         width: 40px;
         height: 40px;
@@ -28,5 +30,8 @@
         font-weight: bold;
       }
     }
+  }
+  .chatbox{
+    flex:1;
   }
 }
