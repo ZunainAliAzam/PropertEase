@@ -4,6 +4,8 @@
 
   .details {
     flex: 3;
+    overflow-y: scroll;
+    padding-bottom: 20px;
 
     .wrapper {
       padding-right: 50px;
