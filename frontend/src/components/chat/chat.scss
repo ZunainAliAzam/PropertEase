@@ -1,0 +1,32 @@
+.chat {
+  .messages {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: scroll;
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .message {
+      display: flex;
+      align-items: center;
+      background-color: #fefefe;
+      padding: 10px 16px;
+      img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .user {
+        font-size: 16px;
+        margin: 0 30px;
+        font-weight: bold;
+      }
+    }
+  }
+}
