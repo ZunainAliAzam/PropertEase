@@ -1,9 +1,12 @@
 .chat {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   .messages {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     overflow-y: scroll;
 
     h1 {
@@ -17,6 +20,7 @@
       background-color: #fefefe;
       padding: 10px 16px;
       gap: 20px;
+      font-size: 14px;
       cursor: pointer;
       img {
         width: 40px;
@@ -25,13 +29,103 @@
         border-radius: 50%;
       }
       .user {
-        font-size: 16px;
+        font-size: 14px;
         margin: 0 30px;
         font-weight: bold;
       }
     }
   }
-  .chatbox{
-    flex:1;
+  .chatbox {
+    flex: 1;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .top {
+      background-color: #f7c14b85;
+      padding: 10px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .user {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        font-size: 14px;
+        img {
+          width: 30px;
+          height: 30px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+      .close {
+        cursor: pointer;
+      }
+    }
+    .center {
+      height: 350px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+      overflow-y: scroll;
+      font-size: 14px;
+      color:darkslategray;
+
+      .chatMessage {
+        width: 45%;
+
+        span{
+          font-size: 12px;
+          background-color:#f7c14b39;
+          padding:3px 5px;
+          border-radius: 10px;
+        };
+
+
+        &.own {
+          align-self: flex-end;
+          text-align: right;
+
+          
+        }
+      }
+    }
+    .bottom {
+      border-top: 2px solid #f7c14b85;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      textarea {
+        flex: 3;
+        height: 100%;
+        border: none;
+        padding: 20px;
+        border-radius: 5px;
+      }
+      button {
+        flex: 1;
+        background-color: #f7c14b85;
+        border: none;
+        height: 100%;
+        cursor: pointer;
+      }
+      button:hover,
+      button:active {
+        background-color: #f7c14b;
+        transition: 0.3s ease-in-out;
+      }
+      button:active {
+        background-color: #f7c14b85;
+        transform: translateY(2px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+    }
   }
 }
