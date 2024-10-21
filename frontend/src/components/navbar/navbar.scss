@@ -12,9 +12,6 @@ nav {
       display: none;
     }
 
-    &:hover {
-      scale: 1.05;
-    }
   }
 
   .left {
@@ -102,6 +99,16 @@ nav {
           width: 26px;
           height: 26px;
         }
+      }
+      .profile:hover {
+        background-color: #f7c14b;
+        scale: 1.01;
+        transition: 0.3s ease-in-out;
+      }
+      .profile:active {
+        background-color: #f7c14b85;
+        transform: translateY(2px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
     }
     .menuIcon {
