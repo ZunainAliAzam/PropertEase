@@ -8,12 +8,12 @@ const Navbar = () => {
     <div>
       <nav>
         <div className="left">
-          <span className="logo">PropertEase</span>
+          <Link to="/"><span className="logo">PropertEase</span> </Link>
           <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
-          <Link to="/agents">Agents</Link>
-          <Link to="/listings">Listings</Link>
+          <Link to="/">About</Link>
+          <Link to="/">Contact</Link>
+          <Link to="/">Agents</Link>
+          <Link to="/list">Listings</Link>
         </div>
         <div className="right">
           {user ? (
