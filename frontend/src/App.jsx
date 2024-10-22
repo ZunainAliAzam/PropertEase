@@ -1,12 +1,25 @@
-import React from 'react'
+import React from "react";
+import HomePage from "./routes/homepage/homePage.jsx";
+import ListPage from "./routes/listPage/listPage.jsx";
+import SinglePage from "./routes/singlePage/SinglePage.jsx";
+import ProfilePage from "./routes/profilePage/ProfilePage.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./routes/layout/Layout.jsx";
 
 const App = () => {
-  return (
-    <div>
-      hellow world
-      <h1>Vite + React</h1>
-    </div>
-  )
-}
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        { path: "/", element: <HomePage /> },
+        { path: "/list", element: <ListPage /> },
+        { path: "/:id", element: <SinglePage /> },
+        { path: "/profile", element: <ProfilePage /> },
+      ],
+    },
+  ]);
+  return <RouterProvider router={router}></RouterProvider>;
+};
 
-export default App
+export default App;

@@ -1,0 +1,82 @@
+@import "../../responsive.scss";
+
+.profilePage {
+  display: flex;
+  height: 100%;
+
+  @include md {
+    flex-direction: column;
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+  .details {
+    flex: 3;
+    overflow-y: scroll;
+    padding-bottom: 20px;
+    scrollbar-width: none;
+
+    @include md {
+      flex: none;
+      height: max-content;
+      margin-bottom: 50px;
+    }
+    .wrapper {
+      padding-right: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h1 {
+          font-weight: 700;
+          font-size: 24px;
+        }
+        button {
+          padding: 12px 24px;
+          background-color: #fece51;
+          cursor: pointer;
+          border: none;
+          border-radius: 5px;
+        }
+        button:hover {
+          background-color: #f7c14b;
+          scale: 1.01;
+          transition: 0.1s ease-in-out;
+        }
+        button:active {
+          background-color: #f7c14b85;
+          transform: translateY(2px);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+      }
+      .info {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 10px;
+
+        img {
+          width: 60px;
+          height: 60px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  .chatContainer {
+    flex: 2;
+    background-color: #fcf5f3;
+    height: 100%;
+  }
+
+  .wrapper {
+    padding: 0 20px;
+    height: 100%;
+  }
+}
