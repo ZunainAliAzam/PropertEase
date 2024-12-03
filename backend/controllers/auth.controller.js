@@ -47,12 +47,11 @@ export const login = async (req, res) => {
       return res.status(401).send({ message: "Invalid credentials" });
     }
 
+    const age = 1000 * 60 * 60 * 24 * 7; // 7 days in milliseconds
     // Generate a JWT token and send it in the response cookie
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET_KEY, {
-      expiresIn: "7d",
+      expiresIn: age,
     });
-
-    const age = 1000 * 60 * 60 * 24 * 7; // 7 days in milliseconds
 
     res.cookie("token", token, {
       httpOnly: true,
@@ -67,7 +66,7 @@ export const login = async (req, res) => {
   }
 };
 
-// Logout function (to be implemented)
+// Logout function
 export const logout = (req, res) => {
   // You can implement cookie clearing or any other DB-related logout operations here
   res.clearCookie("token").status(200).send({ message: "Logout successful" });
