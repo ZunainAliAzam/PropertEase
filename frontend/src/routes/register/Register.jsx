@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import "./register.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import apiRequests from "../../lib/apiRequests";
 const Register = () => {
-  const [error,setError] = useState("")
+  const [error, setError] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,13 +17,13 @@ const Register = () => {
 
     // API call to register user with username, email, and password
     try {
-      const response = await axios.post("http://localhost:8800/api/auth/register", {
+      const response = await apiRequests.post("/auth/register", {
         username,
         email,
         password,
-      })
-      
-      navigate("/login")
+      });
+
+      navigate("/login");
     } catch (error) {
       console.log(error);
       setError(error.response.data.message);
