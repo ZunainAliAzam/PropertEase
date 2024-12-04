@@ -13,6 +13,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(false);
+    setError("");
     const formData = new FormData(e.target);
     const username = formData.get("username");
     const password = formData.get("password");
@@ -23,8 +24,8 @@ const Login = () => {
         username,
         password,
       });
-
-      navigate("/list");
+      localStorage.setItem("user", JSON.stringify(response.data.userInfo));
+      navigate("/");
     } catch (error) {
       console.log(error);
       setError(error.response.data.message);
