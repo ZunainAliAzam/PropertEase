@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./navbar.scss";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const user = true;
+  const user = false;
   return (
     <div>
       <nav>
@@ -30,8 +30,8 @@ const Navbar = () => {
             </div>
           ) : (
             <>
-              <Link to="/signin">Sign In</Link>
-              <Link to="/signup" className="register">
+              <Link to="/login" className="register">Sign In</Link>
+              <Link to="/register" className="register">
                 Sign Up
               </Link>
             </>
