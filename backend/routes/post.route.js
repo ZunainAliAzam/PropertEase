@@ -2,8 +2,17 @@ import express from "express";
 
 const router = express.Router();
 
-router.get("/register", (req, res) => {});
-router.post("/login", (req, res) => {});
-router.post("/logout", (req, res) => {});
+// router.get("/test", (req, res) => {
+//     console.log("router works");
+// });
+// router.post("/test", (req, res) => {
+//     console.log("router works");
+// });
+// router.put("/test", (req, res) => {
+//     console.log("router works");
+// });
+// router.delete("/test", (req, res) => {
+//     console.log("router works");
+// });
 
 export default router;
