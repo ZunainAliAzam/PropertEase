@@ -1,13 +1,27 @@
-import express from "express";
+import jwt from "jsonwebtoken";
 
-const router = express.Router();
+// Middleware to verify JWT token
+export const shouldBeLoggedIn = async (req, res) => {
+  console.log(req.userId);
+  res.status(200).json({ message: "You're authorized" });
+};
 
-router.get("/should-be-logged-in", (req, res) => {
-    console.log("router works");
-});
-router.post("/should-be-admin", (req, res) => {
-    console.log("router works");
-});
+// Middleware to check if user is admin
+export const shouldBeAdmin = async (req, res) => {
+  const token = req.cookies.token;
 
+  if (!token) {
+    return res.status(401).json({ message: "You are not logged in." });
+  }
 
-export default router;
+  jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, payload) => {
+    if (err) {
+      return res.status(403).json({ message: "Invalid token." });
+    }
+    if (!payload.isAdmin) {
+      return res.status(403).json({ message: "You are not an admin" });
+    }
+  });
+
+  res.status(200).json({ message: "You're authorized" });
+};
