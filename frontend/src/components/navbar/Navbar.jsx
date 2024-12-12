@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./navbar.scss";
+import { AuthContext } from "../../context/AuthContext";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const user = true;
+  const { currentUser } = useContext(AuthContext);
   return (
     <div>
       <nav>
         <div className="left">
-          <Link to="/"><span className="logo">PropertEase</span> </Link>
+          <Link to="/">
+            <span className="logo">PropertEase</span>{" "}
+          </Link>
           <Link to="/">Home</Link>
           <Link to="/">About</Link>
           <Link to="/">Contact</Link>
@@ -16,13 +19,15 @@ const Navbar = () => {
           <Link to="/list">Listings</Link>
         </div>
         <div className="right">
-          {user ? (
+          {currentUser ? (
             <div className="user">
-              <img
-                src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt="user"
-              />
-              <span>Welcome, John doe</span>
+              <img src={currentUser.avatar || "noavatar.jpg"} alt="user" />
+              <span>
+                Welcome,
+                {" " +
+                  currentUser.username.charAt(0).toUpperCase() +
+                  currentUser.username.slice(1)}
+              </span>
               <Link to="/profile" className="profile">
                 <div className="notification">3</div>
                 <span>Profile</span>
@@ -30,7 +35,9 @@ const Navbar = () => {
             </div>
           ) : (
             <>
-              <Link to="/login" className="register">Sign In</Link>
+              <Link to="/login" className="register">
+                Sign In
+              </Link>
               <Link to="/register" className="register">
                 Sign Up
               </Link>

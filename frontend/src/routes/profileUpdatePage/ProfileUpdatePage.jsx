@@ -25,7 +25,7 @@ const ProfileUpdatePage = () => {
       navigate("/profile");
     } catch (err) {
       console.error("Error updating user:", err);
-      setError("Failed to update user");
+      setError(err.response.data.message);
     }
   };
   return (
@@ -39,7 +39,7 @@ const ProfileUpdatePage = () => {
               id="username"
               name="username"
               type="text"
-              efaultValue={currentUser.username}
+              defaultValue={currentUser.username}
             />
           </div>
           <div className="item">
@@ -48,7 +48,7 @@ const ProfileUpdatePage = () => {
               id="email"
               name="email"
               type="email"
-              efaultValue={currentUser.email}
+              defaultValue={currentUser.email}
             />
           </div>
           <div className="item">
@@ -60,7 +60,7 @@ const ProfileUpdatePage = () => {
         </form>
       </div>
       <div className="sideContainer">
-        <img
+        {/* <img
           src={avatar[0] || currentUser.avatar || "/noavatar.jpg"}
           alt=""
           className="avatar"
@@ -74,7 +74,7 @@ const ProfileUpdatePage = () => {
             folder: "avatars",
           }}
           setState={setAvatar}
-        />
+        /> */}
       </div>
     </div>
   );
