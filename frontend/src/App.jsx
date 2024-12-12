@@ -8,7 +8,7 @@ import Login from "./routes/login/Login.jsx";
 import NewPostPage from "./routes/newPostPage/NewPostPage.jsx";
 import ProfileUpdatePage from "./routes/profileUpdatePage/ProfileUpdatePage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "./routes/layout/Layout.jsx";
+import { Layout, RequireAuthLayout } from "./routes/layout/Layout.jsx";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -19,11 +19,17 @@ const App = () => {
         { path: "/", element: <HomePage /> },
         { path: "/list", element: <ListPage /> },
         { path: "/:id", element: <SinglePage /> },
-        { path: "/profile", element: <ProfilePage /> },
         { path: "/login", element: <Login /> },
         { path: "/register", element: <Register /> },
         { path: "add", element: <NewPostPage /> },
-        { path: "profile/update", element: <ProfileUpdatePage /> },
+      ],
+    },
+    {
+      path: "/",
+      element: <RequireAuthLayout />,
+      children: [
+        { path: "/profile", element: <ProfilePage /> },
+        { path: "/profile/update", element: <ProfileUpdatePage /> },
       ],
     },
   ]);

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import "./profilePage.scss";
 import List from "../../components/list/List";
 import Chat from "../../components/chat/Chat";
@@ -10,11 +10,6 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const { updateUser, currentUser } = useContext(AuthContext);
 
-  useEffect(() => {
-    if (!currentUser) {
-      navigate("/login");
-    }
-  }, [currentUser, navigate]);
   const handleLogout = async () => {
     try {
       const response = await apiRequests.post("/auth/logout");
@@ -26,7 +21,7 @@ const ProfilePage = () => {
     }
   };
   return (
-    (currentUser && <div className="profilePage">
+    <div className="profilePage">
       <div className="details">
         <div className="wrapper">
           <div className="title">
@@ -65,7 +60,6 @@ const ProfilePage = () => {
         </div>
       </div>
     </div>)
-  );
 };
 
 export default ProfilePage;
