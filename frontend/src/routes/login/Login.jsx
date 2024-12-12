@@ -1,12 +1,44 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "./login.scss"   
+import { Link, useNavigate } from "react-router-dom";
+import "./login.scss";
+import { useState } from "react";
+import apiRequests from "../../lib/apiRequests";
 
 const Login = () => {
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(false);
+    setError("");
+    const formData = new FormData(e.target);
+    const username = formData.get("username");
+    const password = formData.get("password");
+
+    // API call to register user with username, email, and password
+    try {
+      const response = await apiRequests.post("/auth/login", {
+        username,
+        password,
+      });
+      localStorage.setItem("user", JSON.stringify(response.data));
+
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      setError(error.response.data.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="login">
       <div className="formContainer">
-        <form action="">
+        <form onSubmit={handleSubmit}>
           <h1>Welcome back</h1>
           <input
             name="username"
@@ -22,7 +54,8 @@ const Login = () => {
             required
             placeholder="Password"
           />
-          <button >Login</button>
+          <button disabled={isLoading}>Login</button>
+          {error && <span>{error}</span>}
           <Link to="/register">{"Don't"} you have an account?</Link>
         </form>
       </div>

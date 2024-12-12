@@ -65,6 +65,14 @@
           object-fit: cover;
           border-radius: 50%;
         }
+
+        button{
+          padding: 10px 20px;
+          background-color: #e93f3f;
+          cursor: pointer;
+          border: none;
+          border-radius: 5px;
+        }
       }
     }
   }
