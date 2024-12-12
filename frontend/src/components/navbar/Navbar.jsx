@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./navbar.scss";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const user = false;
+  const user = true;
   return (
     <div>
       <nav>
