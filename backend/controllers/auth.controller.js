@@ -49,23 +49,27 @@ export const login = async (req, res) => {
 
     const age = 1000 * 60 * 60 * 24 * 7; // 7 days in milliseconds
     // Generate a JWT token and send it in the response cookie
-    const token = jwt.sign({ 
-      userId: user.id,
-      isAdmin: true 
-    }, 
-    process.env.JWT_SECRET_KEY, {
-      expiresIn: age,
-    });
+    const token = jwt.sign(
+      {
+        userId: user.id,
+        isAdmin: true,
+      },
+      process.env.JWT_SECRET_KEY,
+      {
+        expiresIn: age,
+      }
+    );
 
-    const {password : userPassword, ...userInfo} =  user;
+    const { password: userPassword, ...userInfo } = user;
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      // secure: true, // Enable this in production
-      expires: new Date(Date.now() + age),
-    })
-    .status(200)
-    .json(userInfo);
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        // secure: true, // Enable this in production
+        expires: new Date(Date.now() + age),
+      })
+      .status(200)
+      .json(userInfo);
   } catch (err) {
     console.error("Login error:", err);
     res.status(500).send({ message: "Something went wrong during login" });

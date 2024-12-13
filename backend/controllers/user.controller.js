@@ -29,7 +29,7 @@ export const getUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   const id = req.params.id;
   const tokenUserId = req.userId;
-  const { password,avatar, ...inputs } = req.body;
+  const { password, avatar, ...inputs } = req.body;
 
   if (id !== tokenUserId) {
     return res.status(403).json({ message: "user unauthorized" });
