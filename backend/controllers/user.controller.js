@@ -29,8 +29,7 @@ export const getUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   const id = req.params.id;
   const tokenUserId = req.userId;
-  //   const body = req.body;
-  const { password, ...inputs } = req.body;
+  const { password,avatar, ...inputs } = req.body;
 
   if (id !== tokenUserId) {
     return res.status(403).json({ message: "user unauthorized" });
@@ -47,6 +46,7 @@ export const updateUser = async (req, res) => {
       data: {
         ...inputs,
         ...(updatedPassword && { password: updatedPassword }),
+        ...(avatar && { avatar }),
       },
     });
     return res.status(200).json(updateUser);
@@ -57,7 +57,17 @@ export const updateUser = async (req, res) => {
 };
 
 export const deleteUser = async (req, res) => {
+  const id = req.params.id;
+  const tokenUserId = req.userId;
+
+  if (id !== tokenUserId) {
+    return res.status(403).json({ message: "user unauthorized" });
+  }
   try {
+    await prisma.user.delete({
+      where: { id },
+    });
+    return res.status(200).json({ message: "User deleted successfully" });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "failed to delete user!" });
