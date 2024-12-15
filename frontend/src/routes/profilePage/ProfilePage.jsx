@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./profilePage.scss";
 import List from "../../components/list/List";
 import Chat from "../../components/chat/Chat";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import apiRequests from "../../lib/apiRequests";
+import { AuthContext } from "../../context/AuthContext";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
+  const { updateUser, currentUser } = useContext(AuthContext);
 
   const handleLogout = async () => {
     try {
       const response = await apiRequests.post("/auth/logout");
-      console.log("Successfully logged out")
+      console.log("Successfully logged out");
+      updateUser(null);
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -23,21 +26,20 @@ const ProfilePage = () => {
         <div className="wrapper">
           <div className="title">
             <h1>User Information</h1>
-            <button>Update Profile</button>
+            <Link to="/profile/update">
+              <button>Update Profile</button>
+            </Link>
           </div>
           <div className="info">
             <span>
               Avatar:
-              <img
-                src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt=""
-              />
+              <img src={currentUser.avatar || "noavatar.jpg"} alt="" />
             </span>
             <span>
-              Username: <b>John Doe</b>
+              Username: <b>{currentUser.username}</b>
             </span>
             <span>
-              Email: <b>john.doe@example.com</b>
+              Email: <b>{currentUser.email}</b>
             </span>
             <button onClick={handleLogout}>Logout</button>
           </div>
@@ -57,8 +59,7 @@ const ProfilePage = () => {
           <Chat />
         </div>
       </div>
-    </div>
-  );
+    </div>)
 };
 
 export default ProfilePage;
