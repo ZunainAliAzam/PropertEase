@@ -10,7 +10,6 @@ export const getPosts = async (req, res) => {
   }
 };
 
-
 export const getPost = async (req, res) => {
   const id = req.params.id;
   try {
@@ -23,7 +22,6 @@ export const getPost = async (req, res) => {
     return res.status(500).json({ message: "Failed to get post!" });
   }
 };
-
 
 export const addPost = async (req, res) => {
   const tokenUserId = req.userId;
@@ -46,18 +44,52 @@ export const addPost = async (req, res) => {
   }
 };
 
-
 export const updatePost = async (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  const tokenUserId = req.userId;
+
   try {
+    const post = await prisma.post.findUnique({
+      where: { id },
+    })
+
+    if (!post || post.userId!== tokenUserId) {
+      return res.status(403).json({ message: "Unauthorized user!" });
+    }
+
+    const updateOnePost = await prisma.post.update({
+      where: { id },
+      data: {
+       ...body,
+      },
+    })
+
+    return res.status(200).json(updateOnePost);
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Failed to update post!" });
   }
 };
 
-
 export const deletePost = async (req, res) => {
+  const id = req.params.id;
+  const tokenUserId = req.userId;
+
   try {
+    const post = await prisma.post.findUnique({
+      where: { id },
+    });
+
+    if (!post || post.userId !== tokenUserId) {
+      return res.status(403).json({ message: "Unauthorized user!" });
+    }
+
+    await prisma.post.delete({
+      where: { id },
+    });
+
+    return res.status(200).json({ message: "Post deleted successfully" });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Failed to delete post!" });
