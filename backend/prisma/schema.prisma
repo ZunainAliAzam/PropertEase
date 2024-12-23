@@ -74,7 +74,7 @@ model SavedPost {
   post      Post?     @relation(fields: [postId], references: [id])
   userId    String   @unique @db.ObjectId
   postId    String   @unique @db.ObjectId
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now())c
 
   @@unique([userId, postId])
 }
