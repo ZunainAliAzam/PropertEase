@@ -21,7 +21,6 @@ const App = () => {
         { path: "/:id", element: <SinglePage /> },
         { path: "/login", element: <Login /> },
         { path: "/register", element: <Register /> },
-        { path: "add", element: <NewPostPage /> },
       ],
     },
     {
@@ -30,6 +29,7 @@ const App = () => {
       children: [
         { path: "/profile", element: <ProfilePage /> },
         { path: "/profile/update", element: <ProfileUpdatePage /> },
+        { path: "/add", element: <NewPostPage /> },
       ],
     },
   ]);
