@@ -19,6 +19,15 @@ export const getPost = async (req, res) => {
     // Find the post with the given ID
     const onePost = await prisma.post.findUnique({
       where: { id },
+      include: {
+        postDetails: true,
+        user: {
+          select: {
+            username: true,
+            avatar: true,
+          },
+        }, // Include the user information in the response
+      }
     });
     return res.status(200).json(onePost); // Respond with the post details
   } catch (err) {
@@ -41,8 +50,14 @@ export const addPost = async (req, res) => {
     // Create a new post with the provided data and associate it with the user
     const newPost = await prisma.post.create({
       data: {
-        ...body,
+        ...body.postData,
         userId: tokenUserId,
+        postDetails: {
+          create: body.postDetails,
+        },
+      },
+      include: {
+        postDetails: true, // Include the postDetails in the response
       },
     });
     return res.status(201).json(newPost); // Respond with the created post
