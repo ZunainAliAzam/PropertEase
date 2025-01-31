@@ -1,16 +1,54 @@
-import React from 'react'
+import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import "./newPostPage.scss"
+import "./newPostPage.scss";
+import apiRequests from "../../lib/apiRequests";
+import { useNavigate } from "react-router-dom";
+import UploadWidget from "../../components/uploadWidget/UploadWidget";
 
 const NewPostPage = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
+  const [error, setError] = useState("");
+  const [images, setImages] = useState([]);
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    console.log(value);
-  }
+    const formData = new FormData(e.target);
+    const inputs = Object.fromEntries(formData);
+    try {
+      const res = await apiRequests.post("/posts", {
+        postData: {
+          title: inputs.title,
+          price: parseInt(inputs.price),
+          address: inputs.address,
+          city: inputs.city,
+          bedroom: parseInt(inputs.bedroom),
+          bathroom: parseInt(inputs.bathroom),
+          type: inputs.type,
+          property: inputs.property,
+          latitude: inputs.latitude,
+          longitude: inputs.longitude,
+          images: images,
+        },
+        postDetail: {
+          desc: value,
+          utilities: inputs.utilities,
+          pet: inputs.pet,
+          income: inputs.income,
+          size: parseInt(inputs.size),
+          school: parseInt(inputs.school),
+          bus: parseInt(inputs.bus),
+          restaurant: parseInt(inputs.restaurant),
+        },
+      });
+      navigate("/" + res.data.id);
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+    }
+  };
   return (
     <div className="newPostPage">
       <div className="formContainer">
@@ -35,9 +73,9 @@ const NewPostPage = () => {
                 id="desc"
                 name="desc"
                 theme="snow"
-                onChange={e => setValue(e)}
+                onChange={(e) => setValue(e)}
                 value={value}
-                />
+              />
             </div>
             <div className="item">
               <label htmlFor="city">City</label>
@@ -120,13 +158,25 @@ const NewPostPage = () => {
             </div>
             <button className="sendButton">Add</button>
           </form>
+          {error && <span>{error}</span>}
         </div>
       </div>
       <div className="sideContainer">
-        
+      {images.map((image, index) => (
+          <img src={image} key={index} alt="" />
+        ))}
+        <UploadWidget
+          uwConfig={{
+            multiple: true,
+            cloudName: "db6wgrlsb",
+            uploadPreset: "estate",
+            folder: "posts",
+          }}
+          setState={setImages}
+        />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NewPostPage
+export default NewPostPage;
