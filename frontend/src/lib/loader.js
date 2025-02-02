@@ -1,7 +1,6 @@
-import apiRequests from "./apiRequests"
+import apiRequests from "./apiRequests";
 
-export const singlePageLoader = async ({request, params}) => {
-    const res = await apiRequests("/posts/"+params.id, {
-        
-    })
-}
+export const singlePageLoader = async ({ request, params }) => {
+  const res = await apiRequests("/posts/" + params.id);
+  return res.data;
+};
