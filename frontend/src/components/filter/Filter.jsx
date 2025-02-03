@@ -27,7 +27,7 @@ function Filter() {
   return (
     <div className="filter">
       <h1>
-        Search results for <b>london</b>
+        Search results for <b>kasmlasm</b>
       </h1>
       <div className="top">
         <div className="item">

@@ -9,7 +9,7 @@ import NewPostPage from "./routes/newPostPage/NewPostPage.jsx";
 import ProfileUpdatePage from "./routes/profileUpdatePage/ProfileUpdatePage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Layout, RequireAuthLayout } from "./routes/layout/Layout.jsx";
-import { singlePageLoader } from "./lib/loader.js";
+import { listPageLoaders, singlePageLoader } from "./lib/loader.js";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -18,8 +18,8 @@ const App = () => {
       element: <Layout />,
       children: [
         { path: "/", element: <HomePage /> },
-        { path: "/list", element: <ListPage /> },
-        { path: "/:id", element: <SinglePage />, loader: singlePageLoader},
+        { path: "/list", element: <ListPage />, loader: listPageLoaders },
+        { path: "/:id", element: <SinglePage />, loader: singlePageLoader },
         { path: "/login", element: <Login /> },
         { path: "/register", element: <Register /> },
       ],

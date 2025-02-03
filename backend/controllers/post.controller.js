@@ -2,9 +2,21 @@ import prisma from "../lib/prisma.js"; // Importing the Prisma client instance
 
 // Controller to fetch all posts
 export const getPosts = async (req, res) => {
+  const query = req.query;
   try {
     // Fetch all posts from the database
-    const posts = await prisma.post.findMany();
+    const posts = await prisma.post.findMany({
+      where: {
+        city: query.city || undefined,
+        price: {
+          price_gte: query.minPrice || 0,
+          price_lte: query.maxPrice || 10000000,
+        },
+        bedrooms: parseInt(query.bedroom) || undefined,
+        type: query.type || undefined,
+        property: query.property || undefined,
+      },
+    });
     return res.status(200).json(posts); // Respond with the list of posts
   } catch (err) {
     console.log(err); // Log the error for debugging
@@ -28,9 +40,9 @@ export const getPost = async (req, res) => {
             avatar: true,
           },
         }, // Include the user information in the response
-      }
+      },
     });
-    console.log(onePost) 
+    console.log(onePost);
     return res.status(200).json(onePost); // Respond with the post details
   } catch (err) {
     console.log(err); // Log the error for debugging
