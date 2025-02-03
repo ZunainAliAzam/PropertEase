@@ -4,6 +4,7 @@ import Slider from "../../components/slider/Slider";
 import Map from "../../components/map/Map";
 import { singlePostData, userData } from "../../lib/dummyData";
 import { useLoaderData } from "react-router-dom";
+import DOMPurify from "dompurify";
 
 const SinglePage = () => {
   const post = useLoaderData();
@@ -28,7 +29,13 @@ const SinglePage = () => {
                 <span>{post.user.username}</span>
               </div>
             </div>
-            <div className="bottom">{post.postDetails.desc}</div>
+            <div
+              className="bottom"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(post.postDetails.desc),
+              }}
+            >
+            </div>
           </div>
         </div>
       </div>
@@ -86,15 +93,39 @@ const SinglePage = () => {
           <div className="listHorizontal">
             <div className="feature">
               <img src="./school.png" alt="" />
-              <p>{post.postDetails.school} School</p>
+              <div className="featureText">
+                <span>School</span>
+                <p>
+                  {post.postDetails.school > 999
+                    ? post.postDetails.school / 1000 + "km"
+                    : post.postDetails.school + "m"}{" "}
+                  away
+                </p>
+              </div>
             </div>
             <div className="feature">
               <img src="./pet.png" alt="" />
-              <p>{post.postDetails.bus} Bus</p>
+              <div className="featureText">
+                <span>Bus</span>
+                <p>
+                  {post.postDetails.bus > 999
+                    ? post.postDetails.bus / 1000 + "km"
+                    : post.postDetails.bus + "m"}{" "}
+                  away
+                </p>
+              </div>
             </div>
             <div className="feature">
               <img src="./fee.png" alt="" />
-              <p>{post.postDetails.restaurant} Restaurant </p>
+              <div className="featureText">
+                <span>Restaurant</span>
+                <p>
+                  {post.postDetails.restaurant > 999
+                    ? post.postDetails.restaurant / 1000 + "km"
+                    : post.postDetails.restaurant + "m"}{" "}
+                  away
+                </p>
+              </div>
             </div>
           </div>
           <p className="title">Location</p>
