@@ -15,6 +15,7 @@ export const getPosts = async (req, res) => {
 // Controller to fetch a single post by ID
 export const getPost = async (req, res) => {
   const id = req.params.id; // Extracting the post ID from request parameters
+  const body = req.body;
   try {
     // Find the post with the given ID
     const onePost = await prisma.post.findUnique({
@@ -29,6 +30,7 @@ export const getPost = async (req, res) => {
         }, // Include the user information in the response
       }
     });
+    console.log(onePost) 
     return res.status(200).json(onePost); // Respond with the post details
   } catch (err) {
     console.log(err); // Log the error for debugging
@@ -108,11 +110,21 @@ export const deletePost = async (req, res) => {
     // Find the post with the given ID
     const post = await prisma.post.findUnique({
       where: { id },
+      include: {
+        postDetails: true, // Include PostDetails relation
+      },
     });
 
     // Check if the post exists and if the user is authorized to delete it
     if (!post || post.userId !== tokenUserId) {
       return res.status(403).json({ message: "Unauthorized user!" }); // Respond with an unauthorized error
+    }
+
+    // If the post has associated PostDetails, delete them first
+    if (post.postDetails) {
+      await prisma.postDetails.delete({
+        where: { id: post.postDetails.id }, // Use the actual PostDetails ID
+      });
     }
 
     // Delete the post
