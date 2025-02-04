@@ -34,8 +34,7 @@ const SinglePage = () => {
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(post.postDetails.desc),
               }}
-            >
-            </div>
+            ></div>
           </div>
         </div>
       </div>

@@ -34,8 +34,7 @@ const ListPage = () => {
             resolve={posts.postResponse}
             errorElement={<p>Error Loading the posts!</p>}
           >
-            {(postResponse) => <Map items={postResponse.data} /> 
-            }
+            {(postResponse) => <Map items={postResponse.data} />}
           </Await>
         </Suspense>
       </div>
