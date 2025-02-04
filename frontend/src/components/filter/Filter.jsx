@@ -27,7 +27,7 @@ function Filter() {
   return (
     <div className="filter">
       <h1>
-        Search results for <b>london</b>
+        Search results for <strong>{searchParams.get("city")}</strong>
       </h1>
       <div className="top">
         <div className="item">
@@ -38,7 +38,7 @@ function Filter() {
             name="city"
             placeholder="City Location"
             onChange={handleChange}
-            // defaultValue={query.city}
+            defaultValue={query.city}
           />
         </div>
       </div>
@@ -49,7 +49,7 @@ function Filter() {
             name="type"
             id="type"
             onChange={handleChange}
-            // defaultValue={query.type}
+            defaultValue={query.type}
           >
             <option value="">any</option>
             <option value="buy">Buy</option>
@@ -62,7 +62,7 @@ function Filter() {
             name="property"
             id="property"
             onChange={handleChange}
-            // defaultValue={query.property}
+            defaultValue={query.property}
           >
             <option value="">any</option>
             <option value="apartment">Apartment</option>
@@ -79,7 +79,7 @@ function Filter() {
             name="minPrice"
             placeholder="any"
             onChange={handleChange}
-            // defaultValue={query.minPrice}
+            defaultValue={query.minPrice}
           />
         </div>
         <div className="item">
@@ -90,7 +90,7 @@ function Filter() {
             name="maxPrice"
             placeholder="any"
             onChange={handleChange}
-            // defaultValue={query.maxPrice}
+            defaultValue={query.maxPrice}
           />
         </div>
         <div className="item">
@@ -101,7 +101,7 @@ function Filter() {
             name="bedroom"
             placeholder="any"
             onChange={handleChange}
-            // defaultValue={query.bedroom}
+            defaultValue={query.bedroom}
           />
         </div>
         <button onClick={handleFilter}>

@@ -24,26 +24,27 @@ const NewPostPage = () => {
           price: parseInt(inputs.price),
           address: inputs.address,
           city: inputs.city,
-          bedroom: parseInt(inputs.bedroom),
-          bathroom: parseInt(inputs.bathroom),
+          bedrooms: parseInt(inputs.bedroom),
+          bathrooms: parseInt(inputs.bathroom),
           type: inputs.type,
           property: inputs.property,
           latitude: inputs.latitude,
           longitude: inputs.longitude,
           images: images,
         },
-        postDetail: {
+        postDetails: {
           desc: value,
           utilities: inputs.utilities,
           pet: inputs.pet,
           income: inputs.income,
           size: parseInt(inputs.size),
-          school: parseInt(inputs.school),
+          school:parseInt(inputs.school),
           bus: parseInt(inputs.bus),
           restaurant: parseInt(inputs.restaurant),
         },
       });
-      navigate("/" + res.data.id);
+      navigate("/" + res.data.id);  
+      
     } catch (err) {
       console.error(err);
       setError(err.message);

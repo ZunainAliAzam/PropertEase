@@ -2,10 +2,24 @@ import prisma from "../lib/prisma.js"; // Importing the Prisma client instance
 
 // Controller to fetch all posts
 export const getPosts = async (req, res) => {
+  const query = req.query;
   try {
     // Fetch all posts from the database
-    const posts = await prisma.post.findMany();
-    return res.status(200).json(posts); // Respond with the list of posts
+    const posts = await prisma.post.findMany({
+      where: {
+        city: query.city || undefined,
+        price: {
+          price_gte: query.minPrice || 0,
+          price_lte: query.maxPrice || 10000000,
+        },
+        bedrooms: parseInt(query.bedroom) || undefined,
+        type: query.type || undefined,
+        property: query.property || undefined,
+      },
+    });
+    setTimeout(() => {
+      return res.status(200).json(posts); // Respond with the list of posts
+    }, 3000);
   } catch (err) {
     console.log(err); // Log the error for debugging
     return res.status(500).json({ message: "Failed to get posts!" }); // Respond with an error message
@@ -15,6 +29,7 @@ export const getPosts = async (req, res) => {
 // Controller to fetch a single post by ID
 export const getPost = async (req, res) => {
   const id = req.params.id; // Extracting the post ID from request parameters
+  const body = req.body;
   try {
     // Find the post with the given ID
     const onePost = await prisma.post.findUnique({
@@ -27,8 +42,9 @@ export const getPost = async (req, res) => {
             avatar: true,
           },
         }, // Include the user information in the response
-      }
+      },
     });
+    console.log(onePost);
     return res.status(200).json(onePost); // Respond with the post details
   } catch (err) {
     console.log(err); // Log the error for debugging
@@ -108,11 +124,21 @@ export const deletePost = async (req, res) => {
     // Find the post with the given ID
     const post = await prisma.post.findUnique({
       where: { id },
+      include: {
+        postDetails: true, // Include PostDetails relation
+      },
     });
 
     // Check if the post exists and if the user is authorized to delete it
     if (!post || post.userId !== tokenUserId) {
       return res.status(403).json({ message: "Unauthorized user!" }); // Respond with an unauthorized error
+    }
+
+    // If the post has associated PostDetails, delete them first
+    if (post.postDetails) {
+      await prisma.postDetails.delete({
+        where: { id: post.postDetails.id }, // Use the actual PostDetails ID
+      });
     }
 
     // Delete the post
