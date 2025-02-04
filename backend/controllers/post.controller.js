@@ -17,7 +17,9 @@ export const getPosts = async (req, res) => {
         property: query.property || undefined,
       },
     });
-    return res.status(200).json(posts); // Respond with the list of posts
+    setTimeout(() => {
+      return res.status(200).json(posts); // Respond with the list of posts
+    }, 3000);
   } catch (err) {
     console.log(err); // Log the error for debugging
     return res.status(500).json({ message: "Failed to get posts!" }); // Respond with an error message
